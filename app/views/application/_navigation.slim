@@ -1,0 +1,72 @@
+.nav.navbar-default.navbar-static-side role="navigation"
+  .sidebar-collapse
+    ul.nav#side-menu
+      li.nav-header
+        .dropdown.profile-element
+          span
+            img src="/images/yblogo.png"
+          a.dropdown-toggle data-toggle="dropdown" href="#"
+            span.clear
+              span.block.m-t-xs
+                strong.font-bold = user_signed_in? ? current_user.email : t('msg_not_logged_in')
+          ul.dropdown-menu.animated.fadeInRight.m-t-xs
+            li
+              = link_to "#{t('lbl.logout')}", destroy_user_session_path, :method => :delete
+        .logo-element
+          | T-SPD
+      - if user_signed_in?
+        li class="#{@mainmenu == :receive ? 'active' : ''}"
+          = link_to "/"
+            i.fa.fa-truck
+            span.nav-label = t('mnu_receive')
+          ul.nav.nav-second-level
+            li class="#{@submenu == :receive ? 'active' : ''}"
+              == link_to "#{t('submenu_receive')}", {:controller => "receive", :action => "receive"}
+            li class="#{@submenu == :check ? 'active' : ''}"
+              == link_to "#{t('submenu_check')}", {:controller => "receive", :action => "check"}
+        li class="#{@mainmenu == :stockin ? 'active' : ''}"
+          = link_to "/"
+            i.fa.fa-download
+            span.nav-label = t('mnu_stockin')
+          ul.nav.nav-second-level
+            li class="#{@submenu == :warestockin ? 'active' : ''}"
+              == link_to "#{t('submenu_stockin')}", {:controller => "stockin", :action => "warestockin"}
+            li class="#{@submenu == :inventory ? 'active' : ''}"
+              == link_to "#{t('submenu_inventory')}", {:controller => "stockin", :action => "inventory"}
+            li class="#{@submenu == :warehouseslot ? 'active' : ''}"
+              == link_to "#{t('submenu_slot')}", {:controller => "stockin", :action => "warehouseslot"}
+            /li class="#{@submenu == :mobonshelf ? 'active' : ''}"
+            /  == link_to "#{t('submenu_onshelf')}", {:controller => "stockin", :action => "mobonshelf"}
+
+
+        li class="#{@mainmenu == :hospital_applications ? 'active' : ''}"
+          = link_to "/"
+            i.fa.fa-hospital-o
+            span.nav-label = t('mnu_hosp_appl')
+          ul.nav.nav-second-level
+            li class="#{@submenu == :index ? 'active' : ''}"
+              == link_to "#{t('submenu_appl_list')}", {:controller => "hospital_applications", :action => "index"}
+
+
+        li class="#{@mainmenu == :pickandreview ? 'active' : ''}"
+          = link_to "/"
+            i.fa.fa-cart-arrow-down
+            span.nav-label = t('mnu_pick')
+          ul.nav.nav-second-level
+            li class="#{@submenu == :index ? 'active' : ''}"
+              == link_to "#{t('submenu_review_list')}", {:controller => "pickandreview", :action => "index"}
+
+
+        li class="#{@mainmenu == :stockout ? 'active' : ''}"
+          = link_to "/"
+            i.fa.fa-upload
+            span.nav-label = t('mnu_stockout')
+          ul.nav.nav-second-level
+            li class="#{@submenu == :receipt ? 'active' : ''}"
+              == link_to "#{t('submenu_stockout_receipt')}", {:controller => "stockout", :action => "receipt"}
+            li class="#{@submenu == :return ? 'active' : ''}"
+              == link_to "#{t('submenu_stockout_return')}", {:controller => "stockout", :action => "return"}
+            li class="#{@submenu == :returnlist ? 'active' : ''}"
+              == link_to "#{t('submenu_stockout_return_list')}", {:controller => "stockout", :action => "returnlist"}
+            li class="#{@submenu == :search ? 'active' : ''}"
+              == link_to "#{t('submenu_stockout_search')}", {:controller => "stockout", :action => "search"}

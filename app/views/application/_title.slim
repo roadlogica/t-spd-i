@@ -1,0 +1,6 @@
+.row
+  .col-md-6
+    .ybtitle = @title
+  .col-md-6
+    - @buttons.each do |b|
+      a.btn.btn-blue1 href="#{b[:action]}" #{b[:label]}

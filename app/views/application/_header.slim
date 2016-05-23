@@ -1,0 +1,18 @@
+.row.border-bottom
+  nav.navbar.navbar-static-top.white-bg role="navigation" style="margin-bottom: 0"
+    .navbar-header
+      a.navbar-minimalize.minimalize-styl-2.btn.btn-primary href="#"
+        i.fa.fa-bars
+    .navbar-brand = @title
+    ul.nav.navbar-top-links.navbar-right
+      - @buttons.each do |b|
+        li
+          a href="#{b[:action]}" #{b[:label]}
+      - if user_signed_in?
+        li
+          = link_to "#{t('mnu_logout')}", destroy_user_session_path, :method => :delete
+      li
+        - if I18n.locale.to_s == "zh-CN"
+            == link_to image_tag("en.png", :size => "25x20", :border => 0), :locale=>'en'
+        - if I18n.locale.to_s == "en"
+            == link_to image_tag("zh.png", :size => "25x20", :border => 0), :locale=>'zh-CN'

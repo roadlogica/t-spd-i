@@ -1,0 +1,7 @@
+form method = 'get' action="#{locals[:action]}"
+  .input-group
+    - if @supplier_order
+      input type="hidden" name = "supplier_order_id" value="#{@supplier_order.id}"
+    input.form-control type="text" name="#{locals[:returnvar]}"
+    span.input-group-btn
+      input.btn.btn-blue type="submit" value="#{t('lbl_scan')}"

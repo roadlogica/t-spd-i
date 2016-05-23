@@ -1,0 +1,7 @@
+- smart_flash_types.each do |type|
+  - get_smart_flash(type).each do |msg|
+    div class="alert alert-dismissible alert-#{type} " role = "alert"
+      button.close type="button" data-dismiss="alert" aria-label="Close"
+        span aria-hidden="true" &times;
+      - msg.to_linkable_texts.each do |sth|
+        = auto_link_text(sth)
